@@ -1,19 +1,30 @@
 local M = {}
 
-M.defaut_config = {
-  load_snippets = true,
-}
+function M.get_default_config()
+  return {
+    load_snippets = true,
+    enable_comments = true,
+  }
+end
 
 function M.setup(config)
   local lconfig = {}
   if config ~= nil then
-    lconfig = M.defaut_config
+    lconfig = M.get_default_config()
   else
     lconfig = config
   end
   if lconfig["load_snippets"] then
     M.load_snippets()
   end
+  if lconfig["enable_comments"] then
+    M.enable_comments()
+  end
+end
+
+function M.enable_comments()
+  vim.cmd [[set comments=://,:--,s:{-,m:\ ,e:-}]]
+  vim.cmd [[set formatoptions=croj]]
 end
 
 local function dump(o)
@@ -40,9 +51,9 @@ function M.load_snippets()
         ls.t("case ")
         , ls.i(1)
       , ls.t({ " of {", "" })
-      , ls.i(2)
+      , ls.i(2, "_")
       , ls.t(" -> ")
-      , ls.i(3)
+      , ls.i(3, "_0")
       , ls.t({ ",", "}" })
       }
     ),
@@ -152,4 +163,5 @@ function M.load_snippets()
   ls.add_snippets("octizys", snippets)
 end
 
-M.setup({ load_snippets = true })
+M.setup({ load_snippets = true, enable_comments = true })
+return M
