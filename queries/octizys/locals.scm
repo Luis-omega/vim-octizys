@@ -1,5 +1,3 @@
-(import_declaration) @local.scope
-
 (import_item) @local.definition.import (#set! local.definition.import.scope "parent")
 (import_declaration
   "import"
@@ -28,7 +26,7 @@
   ":"
   (type_multiplicity
     (multiplicity_variable) @local.reference
-  )?
+  )
   _
 )
 
@@ -81,7 +79,7 @@
 
 (data_type_constructor_type
   name: (local_variable) @local.definition.function (#set! local.definition.function.scope "global")
-  (_)? @local.definition.type
+  (_)?
 )
 
 (data_type) @local.scope
