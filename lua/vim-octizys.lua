@@ -3,7 +3,6 @@ local M = {}
 function M.get_default_config()
   return {
     load_snippets = true,
-    enable_comments = true,
   }
 end
 
@@ -28,14 +27,6 @@ function M.setup(user_config)
   if config["load_snippets"] then
     M.load_snippets()
   end
-  if config["set_comments"] then
-    M.set_comments()
-  end
-end
-
-function M.set_comments()
-  vim.cmd [[set comments=://,:--,s:{-,m:\ ,e:-}]]
-  vim.cmd [[set formatoptions=croj]]
 end
 
 function M.load_snippets()
