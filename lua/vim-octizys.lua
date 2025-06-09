@@ -2,7 +2,7 @@ local M = {}
 
 function M.get_default_config()
   return {
-    load_snippets = true,
+    load_snippets = false,
   }
 end
 
